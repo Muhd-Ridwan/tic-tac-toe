@@ -67,7 +67,7 @@ function deriveWinner(gameBoard, players) {
 
 function App() {
   const [players, setPlayers] = useState({
-    PLAYERS,
+    ...PLAYERS,
   });
   const [gameTurns, setGameTurns] = useState([]);
   // const [hasWinner, setWinner] = useState(false); // Initially it is false, because no winner. useState declare the initial value
@@ -85,7 +85,7 @@ function App() {
       const currentPlayer = deriveActivePlayer(prevTurns);
 
       const updatedTurns = [
-        { square: { row: rowPost, col: colPost }, player: activePlayer },
+        { square: { row: rowPost, col: colPost }, player: currentPlayer },
         ...prevTurns,
       ];
 
@@ -112,13 +112,13 @@ function App() {
         {/* PLAYERS */}
         <ol id="players" className="highlight-player">
           <Player
-            name={PLAYERS.X}
+            name={players.X}
             symbol="X"
             isActive={activePlayer === "X"}
             onChangeName={handlePlayerNameChange}
           />
           <Player
-            name={PLAYERS.O}
+            name={players.O}
             symbol="O"
             isActive={activePlayer === "O"}
             onChangeName={handlePlayerNameChange}
