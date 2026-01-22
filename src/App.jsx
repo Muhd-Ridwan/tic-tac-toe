@@ -66,9 +66,7 @@ function deriveWinner(gameBoard, players) {
 }
 
 function App() {
-  const [players, setPlayers] = useState({
-    ...PLAYERS,
-  });
+  const [players, setPlayers] = useState(PLAYERS);
   const [gameTurns, setGameTurns] = useState([]);
   // const [hasWinner, setWinner] = useState(false); // Initially it is false, because no winner. useState declare the initial value
   // but declaring such thing is redundant because we can derive the state whether have a winner or not from gameTurns
