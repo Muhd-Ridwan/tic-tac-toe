@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Player({ name, symbol, isActive }) {
+export default function Player({ name, symbol, isActive, onChangeName }) {
   // Can use useState more than 1 if got diff pieces of state want to manage
   const [playerName, setPlayerName] = useState(name);
   const [editing, setEditing] = useState(false); // in this state to manage the boolean value whether it is editing or not.
@@ -9,6 +9,9 @@ export default function Player({ name, symbol, isActive }) {
     // setEditing(editing ? false : true); This is one way to achieve inverting the boolean value but it is unecessary complex
     // setEditing(!editing); cannot do like this because when updating state based on previous value, should pass a function to the state updating function
     setEditing((editingVal) => !editingVal); // This one is the correct way to update state based on old state
+    if (editing) {
+      onChangeName(symbol, playerName);
+    }
   }
 
   function handleChange(event) {
