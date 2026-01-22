@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Player({ name, symbol }) {
+export default function Player({ name, symbol, isActive }) {
   // Can use useState more than 1 if got diff pieces of state want to manage
   const [playerName, setPlayerName] = useState(name);
   const [editing, setEditing] = useState(false); // in this state to manage the boolean value whether it is editing or not.
@@ -26,7 +26,7 @@ export default function Player({ name, symbol }) {
   }
 
   return (
-    <li>
+    <li className={isActive ? "active" : undefined}>
       <span className=" player">
         {editPlayerName}
         <span className="player-symbol">{symbol}</span>
