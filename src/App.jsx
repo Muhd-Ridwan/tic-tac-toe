@@ -78,6 +78,7 @@ function App() {
   const gameBoard = deriveGameBoard(gameTurns);
   const winner = deriveWinner(gameBoard, players);
   const hasDraw = gameTurns.length === 9 && !winner;
+  const canShuffle = gameTurns.length === 0 || winner || hasDraw;
 
   function handleSelectSquare(rowPost, colPost) {
     // setActivePlayer((curActivePlayer) => (curActivePlayer === "X" ? "O" : "X"));
@@ -106,6 +107,13 @@ function App() {
     });
   }
 
+  function handleSwap() {
+    setPlayers((prevPlayers) => ({
+      X: prevPlayers.O,
+      O: prevPlayers.X,
+    }));
+  }
+
   return (
     <main>
       <div id="game-container">
@@ -117,6 +125,9 @@ function App() {
             isActive={activePlayer === "X"}
             onChangeName={handlePlayerNameChange}
           />
+          <button onClick={handleSwap} disabled={!canShuffle}>
+            <img src="shuffle.png" alt="Shuffle Player" />
+          </button>
           <Player
             name={PLAYERS.O}
             symbol="O"
